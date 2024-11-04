@@ -24,8 +24,7 @@ function ArticlesList(){
     }
     return (<div id="articles-list">
         {articles.map((article) => {
-            console.log(article)
-            return <ArticleCard key={`article-${article.article_id}`} article_id={article.article_id} title={article.title} author={article.author} created_at={article.created_at} image={article.article_img_url} votes={article.votes} comment_count={article.comment_count}/>
+            return <ArticleCard key={`article-${article.article_id}`} article_id={article.article_id} title={article.title} author={article.author} created_at={article.created_at} image={article.article_img_url} topic={article.topic} votes={article.votes} comment_count={article.comment_count}/>
         })}
     </div>)
 }

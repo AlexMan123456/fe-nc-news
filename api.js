@@ -9,4 +9,10 @@ function getArticles(){
     })
 }
 
-export { getArticles }
+function getArticleById(id){
+    return api.get(`/api/articles/${id}`).then((data) => {
+        return data.data.article
+    })
+}
+
+export { getArticles, getArticleById }
