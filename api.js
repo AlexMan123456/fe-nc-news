@@ -9,4 +9,16 @@ function getArticles(){
     })
 }
 
-export { getArticles }
+function getArticleById(id){
+    return api.get(`/api/articles/${id}`).then((data) => {
+        return data.data.article
+    })
+}
+
+function getCommentsByArticleId(articleID){
+    return api.get(`/api/articles/${articleID}/comments`).then((data) => {
+        return data.data.comments
+    })
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId }
