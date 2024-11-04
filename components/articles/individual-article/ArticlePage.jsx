@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom"
 import { getArticleById } from "../../../api"
 import { useEffect, useState } from "react"
 import ArticleContents from "./ArticleContents"
-import CommentsSection from "./comments/CommentsSection"
 
 function ArticlePage(props){
     const [article, setArticle] = useState({})
@@ -29,8 +28,6 @@ function ArticlePage(props){
     <article>
        <ArticleContents title={article.title} author={article.author} image={article.article_img_url} body={article.body} created_at={article.created_at} votes={article.votes}/> 
     </article>
-    <h3>Comments</h3>
-    <CommentsSection articleID = {articleID}/>
     </>)
 }
 
