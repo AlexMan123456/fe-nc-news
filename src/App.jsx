@@ -1,11 +1,12 @@
 import { Route, Routes, Link } from "react-router-dom"
-import ArticlesList from "../components/articles/ArticlesList"
-import Homepage from "../components/Homepage"
-import Navigation from "../components/Navigation"
-import ArticlePage from "../components/articles/individual-article/ArticlePage"
-import SignInPage from "../components/users/SignInPage"
+import ArticlesList from "../components/articles/ArticlesList.jsx"
+import Homepage from "../components/Homepage.jsx"
+import Navigation from "../components/Navigation.jsx"
+import ArticlePage from "../components/articles/individual-article/ArticlePage.jsx"
+import SignInPage from "../components/users/SignInPage.jsx"
 import { useContext } from "react"
-import { UserContext } from "../contexts/UserContext"
+import { UserContext } from "../contexts/UserContext.jsx"
+import TopicsList from "../components/topics/TopicsList.jsx"
 
 function App() {
   const {signedInUser} = useContext(UserContext)
@@ -23,6 +24,7 @@ function App() {
       <Route path="/users" element={<SignInPage/>}/>
       <Route path="/articles" element={<ArticlesList/>}/>
       <Route path="/articles/:article_id" element={<ArticlePage/>}/>
+      <Route path="/topics" element={<TopicsList/>}></Route>
     </Routes>
   </>)
 }
