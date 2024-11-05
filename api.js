@@ -17,8 +17,15 @@ function getArticleById(id){
 
 function getCommentsByArticleId(articleID){
     return api.get(`/api/articles/${articleID}/comments`).then((data) => {
+        console.log(data)
         return data.data.comments
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId }
+function updateCommentVoteCount(commentID){
+    return api.patch(`/api/comments/${commentID}`, {inc_votes: 1}).then((data) => {
+        return data.data.comment
+    })
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount }
