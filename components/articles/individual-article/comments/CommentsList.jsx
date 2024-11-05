@@ -3,17 +3,18 @@ import { getCommentsByArticleId } from "../../../../api"
 import CommentCard from "./CommentCard"
 
 function CommentsList(props){
-    const [comments, setComments] = useState([])
+    const {comments, setComments} = props
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
     useEffect(() => {
         setIsLoading(true)
         getCommentsByArticleId(props.articleID).then((comments) => {
             setIsLoading(false)
+            setError("")
             setComments(comments)
         }).catch((err) => {
             setIsLoading(false)
-            setError(err.message)
+            setError("ERROR: Could not fetch comments. Please try again later.")
         })
     }, [])
     if(isLoading){

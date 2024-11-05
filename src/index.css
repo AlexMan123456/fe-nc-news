@@ -2,3 +2,58 @@
     height: auto;
     width: 20vw;
 }
+
+#homepage-link {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+
+#sign-in-details {
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    right: 10px;
+}
+
+.sign-in-card {
+    padding-bottom: 2rem;
+}
+
+.sign-in-avatar {
+    height: auto;
+    width: 50px;
+    display: grid;
+}
+
+h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+#navigation-bar {
+    text-align: center;
+}
+
+#navigation-bar > .nav-item {
+    margin: 5vw;
+}
+
+#article-contents-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#article-contents-header {
+    text-align: center;
+}
+
+.comment-created-at-label {
+    margin: 10px;
+}
+
+#article-contents-created-at {
+    margin: 10px
+}

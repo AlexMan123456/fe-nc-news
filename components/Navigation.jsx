@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
 function Navigation(){
- return (<nav>
-        <Link to="/articles">Articles</Link>
-        <Link to="/topics">Topics</Link>
+ return (<nav id="navigation-bar">
+        <Link className="nav-item" to="/articles">Articles</Link>
+        <Link className="nav-item" to="/topics">Topics</Link>
     </nav>)
 }
 

@@ -17,7 +17,6 @@ function getArticleById(id){
 
 function getCommentsByArticleId(articleID){
     return api.get(`/api/articles/${articleID}/comments`).then((data) => {
-        console.log(data)
         return data.data.comments
     })
 }
@@ -28,4 +27,16 @@ function updateCommentVoteCount(commentID){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount }
+function getAllUsers(){
+    return api.get("/api/users").then((data) => {
+        return data.data.users
+    })
+}
+
+function postComment(articleID, username, body){
+    return api.post(`/api/articles/${articleID}/comments`, {username, body}).then((data) => {
+        return data.data.comment
+    })
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment }

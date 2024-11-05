@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function ArticleCard(props){
     const {article_id, title, author, image, created_at, votes, comment_count, topic} = props
-    return (<div id="article-card">
+    return (<div key={`article-${article_id}-card`} className="article-card">
         <img className="article-image" key={`article-${article_id}-image`} src={image} alt={`cover image for article '${title}' by ${author}`}/>
         <br></br>
         <Link to={`/articles/${article_id}`} key={`article-${article_id}-title`}>{title}</Link>
