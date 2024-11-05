@@ -1,34 +1,59 @@
-import { useContext, useEffect, useState } from "react"
-import { updateCommentVoteCount } from "../../../../api"
+import { useContext, useState } from "react"
+import { deleteComment, updateCommentVoteCount } from "../../../../api"
 import { UserContext } from "../../../../contexts/UserContext"
 
 function CommentCard(props){
-    const {comment_id, author, body, created_at, votes} = props
+    const {comment_id, author, body, created_at, votes, setComments} = props
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
     const {signedInUser} = useContext(UserContext)
-    const [error, setError] = useState("")
+    const [voteError, setVoteError] = useState("")
+    const [deleteError, setDeleteError] = useState("")
     return (<div className="comment">
         <label key={`comment-${comment_id}-author`} className="comment-author-label">Author: {author}</label>
         <label key={`comment-${comment_id}-created-at`} className="comment-created-at-label">Created at {created_at}</label>
         <p key={`comment-${comment_id}-body`} className="comment-body-label">{body}</p>
         <label key={`comment-${comment_id}-votes`} className="comment-votes-label">Votes: {currentVoteCount}</label>
-        <button key={`comment-${comment_id}-vote-button`} className="comment-vote-button" onClick={handleClick} disabled={signedInUser ? false : true}>{signedInUser ? "Vote for this comment" : "Sign in to vote"}</button>
-        <label>{error ? error : null}</label>
+        <button key={`comment-${comment_id}-vote-button`} className="comment-vote-button" onClick={handleVotes} disabled={signedInUser ? false : true}>{signedInUser ? "Vote for this comment" : "Sign in to vote"}</button>
+        <label>{voteError ? voteError : null}</label>
+        {author === signedInUser ? <button key={`comment-${comment_id}-delete-button`} onClick={handleDelete}>Delete comment</button> : null}
+        <label>{deleteError ? deleteError : null}</label>
     </div>)
-    function handleClick(event){
+    function handleVotes(event){
         event.preventDefault()
         setCurrentVoteCount((currentVoteCount) => {
             return currentVoteCount + 1
         })
         updateCommentVoteCount(comment_id).catch((err) => {
-            setError("Your vote could not be added. Please try again later.")
+            setVoteError("Your vote could not be added. Please try again later.")
             event.target.disabled = true
             setCurrentVoteCount((currentVoteCount) => {
                 return currentVoteCount - 1
             })
             setTimeout(() => {
                 event.target.disabled = false
-                setError("")
+                setVoteError("")
+            }, 5000)
+        })
+    }
+    function handleDelete(event){
+        event.preventDefault()
+        deleteComment(comment_id).then(() => {
+            setComments((currentComments) => {
+                const existingComments = [...currentComments]
+                for(const index in existingComments){
+                    if(currentComments[index].comment_id === comment_id){
+                        existingComments.splice(index, 1)
+                        break
+                    }
+                }
+                return existingComments
+            })
+        }).catch((err) => {
+            setDeleteError("Your vote could not be deleted. Please try again later.")
+            event.target.disabled = true
+            setTimeout(() => {
+                event.target.disabled = false
+                setDeleteError("")
             }, 5000)
         })
     }
