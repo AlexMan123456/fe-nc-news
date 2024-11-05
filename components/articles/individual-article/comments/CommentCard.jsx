@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { updateCommentVoteCount } from "../../../../api"
+import { UserContext } from "../../../../contexts/UserContext"
 
 function CommentCard(props){
     const {comment_id, author, body, created_at, votes} = props
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
+    const {signedInUser} = useContext(UserContext)
     const [error, setError] = useState("")
     return (<div className="comment">
         <label key={`comment-${comment_id}-author`} className="comment-author-label">Author: {author}</label>
         <label key={`comment-${comment_id}-created-at`} className="comment-created-at-label">Created at {created_at}</label>
         <p key={`comment-${comment_id}-body`} className="comment-body-label">{body}</p>
         <label key={`comment-${comment_id}-votes`} className="comment-votes-label">Votes: {currentVoteCount}</label>
-        <button key={`comment-${comment_id}-vote-button`} className="comment-vote-button" onClick={handleClick}>Vote for this comment</button>
+        <button key={`comment-${comment_id}-vote-button`} className="comment-vote-button" onClick={handleClick} disabled={signedInUser ? false : true}>{signedInUser ? "Vote for this comment" : "Sign in to vote"}</button>
         <label>{error ? error : null}</label>
     </div>)
-
     function handleClick(event){
         event.preventDefault()
         setCurrentVoteCount((currentVoteCount) => {

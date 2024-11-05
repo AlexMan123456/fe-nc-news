@@ -27,6 +27,12 @@ function updateCommentVoteCount(commentID){
     })
 }
 
+function updateArticleVoteCount(articleID, increment){
+    return api.patch(`/api/articles/${articleID}`, {inc_votes: increment ? 1 : -1}).then((data) => {
+        return data.data.updatedArticle
+    })
+}
+
 function getAllUsers(){
     return api.get("/api/users").then((data) => {
         return data.data.users
@@ -39,4 +45,4 @@ function postComment(articleID, username, body){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment }
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount }
