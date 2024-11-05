@@ -10,10 +10,11 @@ function ArticlesList(){
         setIsLoading(true)
         getArticles().then((articles) => {
             setIsLoading(false)
+            setError("")
             setArticles(articles)
         }).catch((err) => {
             setIsLoading(false)
-            setError(err.message)
+            setError("ERROR: Could not fetch articles. Please try again later.")
         })
     }, [])
     if(isLoading){

@@ -13,10 +13,11 @@ function ArticlePage(props){
         setIsLoading(true)
         getArticleById(articleID).then((article) => {
             setIsLoading(false)
+            setError("")
             setArticle(article)
         }).catch((err) => {
             setIsLoading(false)
-            setError(err.message)
+            setError("ERROR: Could not fetch article. Please try again later.")
         })
     }, [])
     if(isLoading){
@@ -29,6 +30,7 @@ function ArticlePage(props){
     <article>
        <ArticleContents title={article.title} author={article.author} image={article.article_img_url} body={article.body} created_at={article.created_at} votes={article.votes}/> 
     </article>
+    <h3>Comments</h3>
     <CommentsSection articleID={article.article_id}/>
     </>)
 }

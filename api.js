@@ -28,4 +28,10 @@ function updateCommentVoteCount(commentID){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount }
+function getAllUsers(){
+    return api.get("/api/users").then((data) => {
+        return data.data.users
+    })
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers }

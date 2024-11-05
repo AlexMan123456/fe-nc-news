@@ -1,12 +1,12 @@
 function ArticleContents(props){
     const {title, author, image, body, created_at, votes} = props
     return (<>
-        <h2>{title}</h2>
-        <img src={image} alt={`cover image for '${title}' by ${author}`}/>
-        <section>{body}</section>
+        <h2 id="article-contents-header">{title}</h2>
+        <img id="article-contents-image" src={image} alt={`cover image for '${title}' by ${author}`}/>
+        <section id="article-contents-body">{body}</section>
         <br></br>
-        <label>Votes: {votes}</label>
-        <label>Created at: {created_at}</label>
+        <label id="article-contents-votes">Votes: {votes}</label>
+        <label id="article-contents-created-at">Created at: {created_at}</label>
     </>)
 }
 
