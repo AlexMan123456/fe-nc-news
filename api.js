@@ -3,7 +3,7 @@ const api = axios.create({
     baseURL: "https://northcoders-project-khyr.onrender.com"
 })
 
-function getArticles(){
+function getAllArticles(){
     return api.get("/api/articles").then((data) => {
         return data.data.articles
     })
@@ -12,6 +12,12 @@ function getArticles(){
 function getArticleById(id){
     return api.get(`/api/articles/${id}`).then((data) => {
         return data.data.article
+    })
+}
+
+function getArticlesByTopic(topic){
+    return api.get(`/api/articles?topic=${topic}`).then((data) => {
+        return data.data.articles
     })
 }
 
@@ -49,4 +55,10 @@ function deleteComment(commentID){
     return api.delete(`/api/comments/${commentID}`)
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment }
+function getAllTopics(){
+    return api.get("/api/topics").then((data) => {
+        return data.data.topics
+    })
+}
+
+export { getAllArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, getArticlesByTopic }

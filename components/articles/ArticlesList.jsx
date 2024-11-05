@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react"
-import { getArticles } from "../../api"
-import ArticleCard from "./ArticleCard"
+import { getAllArticles, getArticlesByTopic } from "../../api.js"
+import ArticleCard from "./ArticleCard.jsx"
+import { useSearchParams } from "react-router-dom"
 
 function ArticlesList(){
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const topicQuery = searchParams.get("topic")
     useEffect(() => {
         setIsLoading(true)
-        getArticles().then((articles) => {
+        const apiRequest = topicQuery ? getArticlesByTopic(topicQuery) : getAllArticles()
+        apiRequest.then((articles) => {
             setIsLoading(false)
             setError("")
             setArticles(articles)
