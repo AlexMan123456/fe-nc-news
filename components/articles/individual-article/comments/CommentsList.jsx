@@ -3,7 +3,7 @@ import { getCommentsByArticleId } from "../../../../api"
 import CommentCard from "./CommentCard"
 
 function CommentsList(props){
-    const [comments, setComments] = useState([])
+    const {comments, setComments} = props
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
     useEffect(() => {

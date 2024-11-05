@@ -17,7 +17,6 @@ function getArticleById(id){
 
 function getCommentsByArticleId(articleID){
     return api.get(`/api/articles/${articleID}/comments`).then((data) => {
-        console.log(data)
         return data.data.comments
     })
 }
@@ -34,4 +33,10 @@ function getAllUsers(){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers }
+function postComment(articleID, username, body){
+    return api.post(`/api/articles/${articleID}/comments`, {username, body}).then((data) => {
+        return data.data.comment
+    })
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment }

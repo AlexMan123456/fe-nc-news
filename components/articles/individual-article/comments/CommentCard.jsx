@@ -1,10 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { updateCommentVoteCount } from "../../../../api"
 
 function CommentCard(props){
     const {comment_id, author, body, created_at, votes} = props
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
-    const [isErrorVisible, setIsErrorVisible] = useState(false)
     const [error, setError] = useState("")
     return (<div className="comment">
         <label key={`comment-${comment_id}-author`} className="comment-author-label">Author: {author}</label>

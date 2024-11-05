@@ -9,8 +9,9 @@
     left: 10px;
 }
 
-#sign-in-page-link {
+#sign-in-details {
     position: absolute;
+    text-align: right;
     top: 0px;
     right: 10px;
 }
