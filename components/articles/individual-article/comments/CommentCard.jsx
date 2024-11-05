@@ -4,6 +4,7 @@ import { updateCommentVoteCount } from "../../../../api"
 function CommentCard(props){
     const {comment_id, author, body, created_at, votes} = props
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
+    const [isErrorVisible, setIsErrorVisible] = useState(false)
     const [error, setError] = useState("")
     return (<div className="comment">
         <label key={`comment-${comment_id}-author`} className="comment-author-label">Author: {author}</label>
@@ -21,9 +22,14 @@ function CommentCard(props){
         })
         updateCommentVoteCount(comment_id).catch((err) => {
             setError("Your vote could not be added. Please try again later.")
+            event.target.disabled = true
             setCurrentVoteCount((currentVoteCount) => {
                 return currentVoteCount - 1
             })
+            setTimeout(() => {
+                event.target.disabled = false
+                setError("")
+            }, 5000)
         })
     }
 }
