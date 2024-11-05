@@ -13,6 +13,7 @@ function CommentAdder(props){
     </form>)
     function handleSubmit(event){
         event.preventDefault()
+        setCommentTextbox("")
         postComment(articleID, signedInUser, commentTextbox).then((postedComment) => {
             setComments((currentCommentsList) => {
                 const commentsListCopy = [...currentCommentsList]

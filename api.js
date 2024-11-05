@@ -45,4 +45,8 @@ function postComment(articleID, username, body){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount }
+function deleteComment(commentID){
+    return api.delete(`/api/comments/${commentID}`)
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment }
