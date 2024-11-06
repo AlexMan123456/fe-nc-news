@@ -18,10 +18,10 @@ function CommentsList(props){
         })
     }, [])
     if(isLoading){
-        return <p>Now loading...</p>
+        return <label>Now loading...</label>
     }
     if(error){
-        return <p>{error}</p>
+        return <label>{error}</label>
     }
     return (<section id="comments-section">
         {comments.map((comment) => {
