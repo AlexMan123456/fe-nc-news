@@ -3,21 +3,13 @@ import { deleteComment, updateCommentVoteCount } from "../../../../api"
 import { UserContext } from "../../../../contexts/UserContext"
 
 function CommentCard(props){
-    const {comment_id, author, body, created_at, votes, setComments} = props
+    const {setComments} = props
+    const {comment_id, author, body, created_at, votes} = props.comment
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
     const {signedInUser} = useContext(UserContext)
     const [voteError, setVoteError] = useState("")
     const [deleteError, setDeleteError] = useState("")
-    return (<div className="comment">
-        <label key={`comment-${comment_id}-author`} className="comment-author-label">Author: {author}</label>
-        <label key={`comment-${comment_id}-created-at`} className="comment-created-at-label">Created at {created_at}</label>
-        <p key={`comment-${comment_id}-body`} className="comment-body-label">{body}</p>
-        <label key={`comment-${comment_id}-votes`} className="comment-votes-label">Votes: {currentVoteCount}</label>
-        <button key={`comment-${comment_id}-vote-button`} className="comment-vote-button" onClick={handleVotes} disabled={signedInUser ? false : true}>{signedInUser ? "Vote for this comment" : "Sign in to vote"}</button>
-        <label>{voteError ? voteError : null}</label>
-        {author === signedInUser ? <button key={`comment-${comment_id}-delete-button`} onClick={handleDelete}>Delete comment</button> : null}
-        <label>{deleteError ? deleteError : null}</label>
-    </div>)
+
     function handleVotes(event){
         event.preventDefault()
         setCurrentVoteCount((currentVoteCount) => {
@@ -35,6 +27,7 @@ function CommentCard(props){
             }, 5000)
         })
     }
+
     function handleDelete(event){
         event.preventDefault()
         deleteComment(comment_id).then(() => {
@@ -57,6 +50,46 @@ function CommentCard(props){
             }, 5000)
         })
     }
+
+    return (<fieldset className="comment">
+        <legend 
+            key={`comment-${comment_id}-author`}
+            className="comment-author-label">
+                    Author: {author}
+        </legend>
+        <label 
+            key={`comment-${comment_id}-created-at`} 
+            className="comment-created-at-label">
+                Created at {created_at}
+        </label>
+        <p
+            key={`comment-${comment_id}-body`} 
+            className="comment-body-label">
+                {body}
+        </p>
+        <label 
+            key={`comment-${comment_id}-votes`} 
+            className="comment-votes-label">
+                Votes: {currentVoteCount}
+        </label>
+        <button 
+            key={`comment-${comment_id}-vote-button`} 
+            className="comment-vote-button" 
+            onClick={handleVotes} 
+            disabled={signedInUser ? false : true}>
+                {signedInUser ? "Vote for this comment" : "Sign in to vote"}
+        </button>
+        <label>{voteError ? voteError : null}</label>
+        {author === signedInUser ? 
+            <button 
+                key={`comment-${comment_id}-delete-button`} 
+                onClick={handleDelete}>
+                    Delete comment
+            </button> 
+        : null}
+        <label>{deleteError ? deleteError : null}</label>
+    </fieldset>)
+    
 }
 
 export default CommentCard
