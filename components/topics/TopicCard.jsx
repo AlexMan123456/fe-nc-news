@@ -4,7 +4,7 @@ import ArticlesList from "../articles/ArticlesList"
 function TopicCard(props){
     const {slug: topic, description} = props.topic
     return (<div className="topic-card">
-        <Link to={`/articles?topic=${topic}`} element={<ArticlesList/>}>{topic}</Link>
+        <Link className="topic-link" to={`/articles?topic=${topic}`} element={<ArticlesList/>}>{topic}</Link>
         <p key={`${topic}-topic-description`}>{description}</p>
     </div>)
 }

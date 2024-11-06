@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
+import formatDateAndTime from "../../utils/format-date-and-time"
 
 function ArticleCard(props){
     const {article_id, title, author, article_img_url: image, created_at, votes, comment_count, topic} = props.article
-    return (<div key={`article-${article_id}-card`} className="article-card">
+    const {date, time} = formatDateAndTime(created_at)
+    return (<fieldset key={`article-${article_id}-card`} className="article-card">
         <img 
             className="article-image" 
             key={`article-${article_id}-image`} 
@@ -11,7 +13,8 @@ function ArticleCard(props){
         <br></br>
         <Link 
             to={`/articles/${article_id}`}
-            key={`article-${article_id}-title`}>
+            key={`article-${article_id}-title`}
+            className="article-link">
                 {title}
         </Link>
         <br></br>
@@ -26,11 +29,13 @@ function ArticleCard(props){
         <br></br>
         <label 
             key={`article-${article_id}-author`}>
-                Created by {author} on {created_at}
+                Created by {author} on {date} at {time}
         </label>
-        <label key={`article-${article_id}-votes`}>Votes: {votes}</label>
-        <label key={`article-${article_id}-comment-count`}>Comments: {comment_count}</label>
-    </div>)
+        <div id="article-stat-counts">
+            <label className="article-stat-count" key={`article-${article_id}-votes`}>Votes: {votes}</label>
+            <label className="article-stat-count" key={`article-${article_id}-comment-count`}>Comments: {comment_count}</label>
+        </div>
+    </fieldset>)
 }
 
 export default ArticleCard
