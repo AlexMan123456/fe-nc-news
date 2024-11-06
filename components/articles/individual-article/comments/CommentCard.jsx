@@ -1,10 +1,12 @@
 import { useContext, useState } from "react"
 import { deleteComment, updateCommentVoteCount } from "../../../../api"
 import { UserContext } from "../../../../contexts/UserContext"
+import formatDateAndTime from "../../../../utils/format-date-and-time"
 
 function CommentCard(props){
     const {setComments} = props
     const {comment_id, author, body, created_at, votes} = props.comment
+    const {date, time} = formatDateAndTime(created_at)
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
     const [votedForComment, setVotedForComment] = useState(false)
     const {signedInUser} = useContext(UserContext)
@@ -64,7 +66,7 @@ function CommentCard(props){
         <label 
             key={`comment-${comment_id}-created-at`} 
             className="comment-created-at-label">
-                Created at {created_at}
+                Created on {date} at {time}
         </label>
         <p
             key={`comment-${comment_id}-body`} 
