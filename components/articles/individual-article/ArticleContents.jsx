@@ -17,7 +17,7 @@ function ArticleContents(props){
             return votedForArticle ? currentVoteCount - 1 : currentVoteCount + 1
         })
         updateArticleVoteCount(article_id, votedForArticle ? false : true).catch((err) => {
-            setError("Your vote could not be added. Please try again later.")
+            setError(`Your vote could not be ${votedForArticle ? "removed" : "added"}. Please try again later.`)
             event.target.disabled = true
             setCurrentVoteCount((currentVoteCount) => {
                 return votedForArticle ? currentVoteCount + 1 : currentVoteCount - 1
