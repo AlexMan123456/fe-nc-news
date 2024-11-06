@@ -15,10 +15,11 @@ function OrderRadioGroup(){
         <RadioGroup 
             aria-labelledby="order-label" 
             name="order-radio-buttons"
+            defaultValue="desc"
             onChange={handleOrder} 
             row>
+                <FormControlLabel value="desc" control={<Radio/>} label="Descending (default)"/>
                 <FormControlLabel value="asc" control={<Radio/>} label="Ascending"/>
-                <FormControlLabel value="desc" control={<Radio/>} label="Descending"/>
         </RadioGroup>
     </FormControl>)
 }

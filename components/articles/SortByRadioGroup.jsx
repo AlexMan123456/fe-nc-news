@@ -17,7 +17,8 @@ function SortByRadioGroup(){
         <FormLabel id="sort-by-label">Sort by:</FormLabel>
         <RadioGroup 
             aria-labelledby="sort-by-label" 
-            name="sort-by-radio-buttons" 
+            name="sort-by-radio-buttons"
+            defaultValue="created_at"
             onChange={handleSortBy} 
             row>
                 <FormControlLabel value="created_at" control={<Radio/>} label="Date (default)"/>
