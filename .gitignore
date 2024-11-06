@@ -23,3 +23,5 @@ plan-source-files
 *.njsproj
 *.sln
 *.sw?
+# Local Netlify folder
+.netlify
