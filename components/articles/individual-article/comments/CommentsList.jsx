@@ -18,14 +18,14 @@ function CommentsList(props){
         })
     }, [])
     if(isLoading){
-        return <p>Now loading...</p>
+        return <label>Now loading...</label>
     }
     if(error){
-        return <p>{error}</p>
+        return <label>{error}</label>
     }
     return (<section id="comments-section">
         {comments.map((comment) => {
-            return (<CommentCard key={`${comment.comment_id}-card`} comment_id={comment.comment_id} author={comment.author} body={comment.body} created_at={comment.created_at} votes={comment.votes} setComments={setComments}/>)
+            return (<CommentCard key={`${comment.comment_id}-card`} comment={comment} setComments={setComments}/>)
         })}
     </section>)
 }

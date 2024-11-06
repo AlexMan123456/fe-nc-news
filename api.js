@@ -15,8 +15,8 @@ function getArticleById(id){
     })
 }
 
-function getArticlesByTopic(topic){
-    return api.get(`/api/articles?topic=${topic}`).then((data) => {
+function getArticlesWithQueries(queryString){
+    return api.get(`/api/articles${queryString}`).then((data) => {
         return data.data.articles
     })
 }
@@ -61,4 +61,4 @@ function getAllTopics(){
     })
 }
 
-export { getAllArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, getArticlesByTopic }
+export { getAllArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, getArticlesWithQueries }

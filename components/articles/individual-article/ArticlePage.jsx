@@ -21,14 +21,14 @@ function ArticlePage(props){
         })
     }, [])
     if(isLoading){
-        return <p>Now loading...</p>
+        return <label>Now loading...</label>
     }
     if(error){
-        return <p>{error}</p>
+        return <label>{error}</label>
     }
     return (<>
     <article>
-       <ArticleContents article_id={articleID} title={article.title} author={article.author} image={article.article_img_url} body={article.body} created_at={article.created_at} votes={article.votes}/> 
+       <ArticleContents article={article}/> 
     </article>
     <h3>Comments</h3>
     <CommentsSection articleID={article.article_id}/>
