@@ -24,7 +24,7 @@ function TopicsList(){
     }
     return (<div id="topics-list">
         {topics.map((topic) => {
-            return <TopicCard key={`${topic.slug}-topic-card`} topic={topic.slug} description={topic.description}/>
+            return <TopicCard key={`${topic.slug}-topic-card`} topic={topic}/>
         })}
     </div>)
 }
