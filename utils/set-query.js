@@ -1,8 +1,6 @@
 function setQuery(queryString, queryKey, newQueryValue){
     let queryKeyFound = false
-    const currentQueries = queryString.split("?").join("").split("&").map((query) => {
-        return query.split("=")
-    })
+    const currentQueries = queryString.split("?").join("").split("&").map((query) => query.split("="))
     for(const index in currentQueries){
         if(currentQueries[index][0] === queryKey){
             queryKeyFound = true
@@ -17,4 +15,3 @@ function setQuery(queryString, queryKey, newQueryValue){
 }
 
 export default setQuery
-

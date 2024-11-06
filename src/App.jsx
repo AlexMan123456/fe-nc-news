@@ -7,6 +7,7 @@ import SignInPage from "../components/users/SignInPage.jsx"
 import { useContext } from "react"
 import { UserContext } from "../contexts/UserContext.jsx"
 import TopicsList from "../components/topics/TopicsList.jsx"
+import NotFoundPage from "../components/error/NotFoundPage.jsx"
 
 function App() {
   const {signedInUser} = useContext(UserContext)
@@ -25,6 +26,7 @@ function App() {
       <Route path="/articles" element={<ArticlesList/>}/>
       <Route path="/articles/:article_id" element={<ArticlePage/>}/>
       <Route path="/topics" element={<TopicsList/>}></Route>
+      <Route path="/*" element={<NotFoundPage/>}/>
     </Routes>
   </>)
 }
