@@ -31,8 +31,11 @@ function ArticleContents(props){
         })
     }
     return (<>
-        <h2 id="article-contents-header">{title}</h2>
-        <img id="article-contents-image" src={image} alt={`cover image for '${title}' by ${author}`}/>
+        <div id="article-details">
+            <h2 id="article-contents-header">{title}</h2>
+            <label id="article-contents-author">By: {author}</label>
+            <img id="article-contents-image" src={image} alt={`cover image for '${title}' by ${author}`}/>
+        </div>
         <section id="article-contents-body">{body}</section>
         <br></br>
         <label id="article-contents-votes">Votes: {currentVoteCount}</label>
@@ -41,7 +44,7 @@ function ArticleContents(props){
             onClick={handleClick} 
             disabled={signedInUser ? false : true}>
                 {signedInUser ? 
-                    (votedForArticle ? "Remove vote" : "Vote for this article") 
+                    (votedForArticle ? "Remove vote" : "Vote") 
                 : "Sign in to vote"}
         </button>
         <label>{error ? error : null}</label>

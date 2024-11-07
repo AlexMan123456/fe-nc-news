@@ -83,7 +83,7 @@ function CommentCard(props){
             className="comment-vote-button" 
             onClick={handleVotes} 
             disabled={signedInUser ? false : true}>
-                {signedInUser ? (votedForComment ? "Remove vote" : "Vote for this comment") : "Sign in to vote"}
+                {signedInUser ? (votedForComment ? "Remove vote" : "Vote") : "Sign in to vote"}
         </button>
         <label>{voteError ? voteError : null}</label>
         {author === signedInUser ? 
