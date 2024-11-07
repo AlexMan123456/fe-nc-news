@@ -130,12 +130,6 @@ h1 {
     }
 }
 
-@media (orientation: portrait) {
-    #article-contents-author {
-        margin-left: 39%;
-    }
-}
-
 #article-details {
     display: grid;
     justify-content: center;
