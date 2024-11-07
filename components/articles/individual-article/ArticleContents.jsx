@@ -31,23 +31,30 @@ function ArticleContents(props){
         })
     }
     return (<>
-        <div id="article-details">
-            <h2 id="article-contents-header">{title}</h2>
-            <label id="article-contents-author">By: {author}</label>
-            <img id="article-contents-image" src={image} alt={`cover image for '${title}' by ${author}`}/>
-        </div>
-        <section id="article-contents-body">{body}</section>
+        <article>
+            <div id="article-details">
+                <h2>{title}</h2>
+                <p>By: {author}</p>
+                <img src={image} alt={`cover image for '${title}' by ${author}`}/>
+            </div>
+            <section id="article-contents-body">
+                <p>{body}</p>
+            </section>
+        </article>
         <br></br>
-        <label id="article-contents-votes">Votes: {currentVoteCount}</label>
-        <label id="article-contents-created-at">Created on {date} at {time}</label>
+        <div id="individual-article-stats">
+            <p id="individual-article-votes" aria-label={`Votes: ${currentVoteCount}.`}>Votes: {currentVoteCount}</p>
+            <p id="individual-article-created-at">Created on <em>{date}</em> at <em>{time}</em></p>
+        </div>
         <button 
-            onClick={handleClick} 
-            disabled={signedInUser ? false : true}>
+            onClick={handleClick}
+            disabled={signedInUser ? false : true}
+            aria-label={votedForArticle ? "Remove your vote from article" : "Vote for article"}>
                 {signedInUser ? 
                     (votedForArticle ? "Remove vote" : "Vote") 
                 : "Sign in to vote"}
         </button>
-        <label>{error ? error : null}</label>
+        <p>{error ? error : null}</p>
     </>)
 }
 

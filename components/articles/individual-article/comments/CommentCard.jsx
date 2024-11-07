@@ -59,41 +59,40 @@ function CommentCard(props){
 
     return (<fieldset className="comment">
         <legend 
-            key={`comment-${comment_id}-author`}
-            className="comment-author-label">
-                    Author: {author}
+            key={`comment-${comment_id}-author-and-created-at`}
+            className="comment-author-label-and-created-at">
+                    Comment by: <strong>{author}</strong> || <em>{date}</em> at <em>{time}</em>
         </legend>
-        <label 
-            key={`comment-${comment_id}-created-at`} 
-            className="comment-created-at-label">
-                Created on {date} at {time}
-        </label>
         <p
             key={`comment-${comment_id}-body`} 
             className="comment-body-label">
                 {body}
         </p>
-        <label 
-            key={`comment-${comment_id}-votes`} 
-            className="comment-votes-label">
-                Votes: {currentVoteCount}
-        </label>
-        <button 
-            key={`comment-${comment_id}-vote-button`} 
-            className="comment-vote-button" 
-            onClick={handleVotes} 
-            disabled={signedInUser ? false : true}>
-                {signedInUser ? (votedForComment ? "Remove vote" : "Vote") : "Sign in to vote"}
-        </button>
-        <label>{voteError ? voteError : null}</label>
-        {author === signedInUser ? 
+        <div className="comment-buttons-and-vote-count">
+            <p 
+                key={`comment-${comment_id}-votes`} 
+                className="comment-votes-label">
+                    Votes: {currentVoteCount}
+            </p>
             <button 
+                key={`comment-${comment_id}-vote-button`} 
+                className="comment-vote-button" 
+                onClick={handleVotes} 
+                disabled={signedInUser ? false : true}
+                aria-label={votedForComment ? `Remove vote from ${author}'s comment` :`Vote for ${author}'s comment`}>
+                    {signedInUser ? (votedForComment ? "Remove vote" : "Vote") : "Sign in to vote"}
+            </button>
+            {author === signedInUser ? 
+                <button 
                 key={`comment-${comment_id}-delete-button`} 
-                onClick={handleDelete}>
-                    Delete comment
-            </button> 
-        : null}
-        <label>{deleteError ? deleteError : null}</label>
+                onClick={handleDelete}
+                aria-label="Delete comment">
+                        Delete
+                </button> 
+            : null}
+        </div>
+        <p>{voteError ? voteError : null}</p>
+        <p>{deleteError ? deleteError : null}</p>
     </fieldset>)
     
 }

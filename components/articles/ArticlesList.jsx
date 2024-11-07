@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getArticles, getArticlesWithQueries } from "../../api.js"
 import ArticleCard from "./ArticleCard.jsx"
 import { useLocation, useSearchParams } from "react-router-dom"
+import displaySortByQuery from "../../utils/display-query.js"
 
 function ArticlesList(){
     const [articles, setArticles] = useState([])
@@ -23,16 +24,16 @@ function ArticlesList(){
         })
     }, [location.search])
     if(isLoading){
-        return <label>Now loading...</label>
+        return <p>Now loading...</p>
     }
     if(error){
-        return <label>{error}</label> 
+        return <p>{error}</p> 
     }
     return (<>
         <div id="article-query-labels">
-            <label>Filtered by topic: {topic ? topic : "none"}</label>
-            <label>Sort by: {sort_by ? sort_by : "date"}</label>
-            <label>Order: {order ? order + "ending" : "descending"}</label>
+            <p aria-label={`Filtered by topic: ${topic ? topic : "none"}.`}>Filtered by topic: {topic ? topic : "none"}</p>
+            <p aria-label={`Sort by: ${sort_by ? displaySortByQuery(sort_by) : "date"}.`}>Sort by: {sort_by ? displaySortByQuery(sort_by) : "date"}</p>
+            <p>Order: {order ? order + "ending" : "descending"}</p>
         </div>
         <div id="articles-list">
             {articles.map((article) => {
