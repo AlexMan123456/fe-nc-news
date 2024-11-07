@@ -23,14 +23,13 @@ function CommentAdder(props){
             setError("Your comment could not be posted. Please try again later.")
         })
     }
-    return (<form onSubmit={handleSubmit}>
+    return (<form id="comment-adder" onSubmit={handleSubmit}>
         <label for="comment-textbox">Add a comment here:</label>
-        <input 
+        <textarea 
             id="comment-textbox" 
-            type="text" 
             value={commentTextbox} 
             onChange={(event) => {setCommentTextbox(event.target.value)}}
-        ></input>
+        ></textarea>
         <input type="submit"></input>
         {error ? <label>{error}</label> : null}
     </form>)

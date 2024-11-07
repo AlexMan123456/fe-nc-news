@@ -10,14 +10,11 @@ To clone the project, in your terminal set to your chosen directory, run the com
 
 To successfully run this project, you will need to install the following dependencies:
 - react (required for managing the site) (minimum version required 18.3.1)
-    - To install this, run `npm install react` in the terminal.
 - react-router-dom (required for managing the routes) (minimum version required 6.27.0)
-    - To install this, run `npm install react-router-dom` in the terminal.
 - axios (required for making requests to the back-end server) (minimum version required: 1.7.7)
-    - To install this, run `npm install axios` in the terminal.
--  Material UI (required for the radio buttons on all articles page) (minimum version required: 6.1.6)
-    - To install this, run `npm install @mui/material @emotion/react @emotion/styled` in the terminal.
+- Material UI (required for the radio buttons on all articles page) (minimum version required: 6.1.6)
 - You will also need at least v22.3.0 of Node to run the project.
+Run `npm install` to install all dependencies.
 
 ## Links to Back-end
 
