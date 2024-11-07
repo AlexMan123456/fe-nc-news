@@ -25,16 +25,25 @@ body {
     right: 10px;
 }
 
+#sign-in-details > p {
+    margin-top: 0px;
+}
+
 #sign-in-page-link {
-    color: blue
+    color: blue;
 }
 
 #sign-in-page-link:hover {
-    color: blueviolet
+    color: blueviolet;
 }
 
-#article-query-labels > label {
-    margin-right: 4vw
+#article-query-labels {
+    display: inline-flex;
+}
+
+#article-query-labels > p {
+    margin-right: 4vw;
+    margin-bottom: 2px;
 }
 
 .sign-in-card {
@@ -49,7 +58,8 @@ body {
 
 h1 {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 2vh
 }
 
 #navigation-bar {
@@ -69,7 +79,16 @@ h1 {
     margin-right: 5vw;
 }
 
-#article-contents-image {
+#individual-article-stats {
+    display: flex;
+}
+
+#individual-article-stats > p {
+    margin-right: 4vw;
+    margin-top: 0px
+}
+
+#article-details > img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -78,12 +97,20 @@ h1 {
     width: 45%;
 }
 
-#article-contents-header {
+#article-details > h2 {
     text-align: center;
 }
 
-#article-contents-author {
-    margin-left: 44%
+#article-details > p {
+    margin-left: 44%;
+    margin-top: 0px;
+}
+
+@media (max-width: 569px) and (orientation: portrait) {
+    #article-details > p {
+        margin-left: 39%;
+        margin-top: 0px;
+    }
 }
 
 #article-details {
@@ -105,6 +132,27 @@ h1 {
     background-color: rgb(251, 248, 242);
 }
 
+.comment-buttons-and-vote-count {
+    display: inline-flex;
+    padding-bottom: 0px;
+}
+
+.comment-buttons-and-vote-count > button {
+    margin-top: 1.4vh;
+    margin-left: 4vw;
+    margin-bottom: 0px;
+    height: 3vh;
+}
+
+.comment-buttons-and-vote-count > p {
+    margin-bottom: 0px;
+}
+
+fieldset {
+    border: 1px groove rgb(190, 190, 190);
+    padding-bottom: 0vh;
+}
+
 .comment-created-at-label {
     margin: 10px;
 }
@@ -114,7 +162,13 @@ h1 {
 }
 
 .article-card {
-    display: grid
+    display: grid;
+    border: 1px groove rgb(190, 190, 190);
+}
+
+.article-card > p {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .article-link {
@@ -131,5 +185,13 @@ h1 {
 }
 
 .topic-link:hover {
+    color: blueviolet
+}
+
+.article-card-topic-link {
+    color: blue
+}
+
+.article-card-topic-link:hover {
     color: blueviolet
 }
