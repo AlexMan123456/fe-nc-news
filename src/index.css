@@ -123,10 +123,17 @@ h1 {
     margin-top: 0px;
 }
 
+.page-display {
+    margin-left: 45%;
+}
+
 @media (max-width: 569px) and (orientation: portrait) {
     #article-details > p {
         margin-left: 39%;
         margin-top: 0px;
+    }
+    .page-display {
+        margin-left: 39%;
     }
 }
 
