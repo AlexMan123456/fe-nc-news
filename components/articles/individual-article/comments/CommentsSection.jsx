@@ -31,7 +31,7 @@ function CommentsSection(props){
             {comments.length === 0 ? 
             <section>
                 <h4>There are no comments on this page!</h4>
-                <Link to={`${location.pathname}${setQuery(location.pathname, "p", 1)}`}>Return to page 1</Link>
+                <Link to={`${setQuery(location.search, "p", 1)}`}>Return to page 1</Link>
             </section>
             :
             <>

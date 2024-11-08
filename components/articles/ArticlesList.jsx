@@ -34,7 +34,7 @@ function ArticlesList(props){
         {articles.length === 0 ? 
             <section>
                 <h2>There are no articles on this page!</h2>
-                <Link to={`${location.pathname}${setQuery(location.search, "p", 1)}`}>Return to page 1</Link>
+                <Link to={`${setQuery(location.search, "p", 1)}`}>Return to page 1</Link>
             </section>
             :
             <div id="articles-list">
