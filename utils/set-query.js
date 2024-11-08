@@ -1,4 +1,7 @@
 function setQuery(queryString, queryKey, newQueryValue){
+    if(queryString.length === 0){
+        return `?${queryKey}=${newQueryValue}`
+    }
     let queryKeyFound = false
     const queryArray = queryString.split("?").join("").split("&").map((query) => query.split("="))
     for(const index in queryArray){

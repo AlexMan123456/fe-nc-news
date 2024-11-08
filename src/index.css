@@ -54,11 +54,11 @@ body {
     color: blueviolet;
 }
 
-#article-query-labels {
+#articles-query-labels {
     display: inline-flex;
 }
 
-#article-query-labels > p {
+#articles-query-labels > p {
     margin-right: 4vw;
     margin-bottom: 2px;
 }
@@ -127,12 +127,6 @@ h1 {
     #article-details > p {
         margin-left: 39%;
         margin-top: 0px;
-    }
-}
-
-@media (orientation: portrait) {
-    #article-contents-author {
-        margin-left: 39%;
     }
 }
 

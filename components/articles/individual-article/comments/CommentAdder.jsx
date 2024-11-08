@@ -24,7 +24,7 @@ function CommentAdder(props){
         })
     }
     return (<form id="comment-adder" onSubmit={handleSubmit}>
-        <label for="comment-textbox">Add a comment here:</label>
+        <label htmlFor="comment-textbox">Add a comment here:</label>
         <textarea 
             id="comment-textbox" 
             value={commentTextbox} 

@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react"
-import { getArticles, getArticlesWithQueries } from "../../api.js"
+import { getArticles } from "../../api.js"
 import ArticleCard from "./ArticleCard.jsx"
-import { useLocation, useSearchParams } from "react-router-dom"
-import displaySortByQuery from "../../utils/display-query.js"
+import PageIndicators from "../pagination/PageIndicators.jsx"
+import { useSearchParams } from "react-router-dom"
+import getSearchParams from "../../utils/get-search-parameters.js"
 
-function ArticlesList(){
+function ArticlesList(props){
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
-    const topic = searchParams.get("topic")
-    const sort_by = searchParams.get("sort_by")
-    const order = searchParams.get("order")
+    const {topic, sort_by, order, limit, p} = getSearchParams(searchParams)
     useEffect(() => {
         setIsLoading(true)
-        getArticles({topic, sort_by, order}).then((articles) => {
+        getArticles({topic, sort_by, order, limit, p}).then((articles) => {
             setIsLoading(false)
             setError("")
             setArticles(articles)
@@ -22,7 +21,7 @@ function ArticlesList(){
             setIsLoading(false)
             setError("ERROR: Could not fetch articles. Please try again later.")
         })
-    }, [location.search])
+    }, [searchParams])
     if(isLoading){
         return <p>Now loading...</p>
     }
@@ -30,16 +29,12 @@ function ArticlesList(){
         return <p>{error}</p> 
     }
     return (<>
-        <div id="article-query-labels">
-            <p aria-label={`Filtered by topic: ${topic ? topic : "none"}.`}>Filtered by topic: {topic ? topic : "none"}</p>
-            <p aria-label={`Sort by: ${sort_by ? displaySortByQuery(sort_by) : "date"}.`}>Sort by: {sort_by ? displaySortByQuery(sort_by) : "date"}</p>
-            <p>Order: {order ? order + "ending" : "descending"}</p>
-        </div>
         <div id="articles-list">
             {articles.map((article) => {
                 return <ArticleCard key={`article-${article.article_id}`} article={article}/>
             })}
         </div>
+        <PageIndicators/>
     </>)
 }
 
