@@ -15,14 +15,8 @@ function getArticleById(id){
     })
 }
 
-function getArticlesWithQueries(queryString){
-    return api.get(`/api/articles${queryString}`).then((data) => {
-        return data.data.articles
-    })
-}
-
-function getCommentsByArticleId(articleID){
-    return api.get(`/api/articles/${articleID}/comments`).then((data) => {
+function getCommentsByArticleId(articleID, queries){
+    return api.get(`/api/articles/${articleID}/comments`, {params: {...queries}}).then((data) => {
         return data.data.comments
     })
 }
@@ -61,4 +55,4 @@ function getAllTopics(){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, getArticlesWithQueries }
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics }

@@ -1,5 +1,4 @@
 function formatDateAndTime(dateTimeString){
-    console.log(dateTimeString)
     const dateTimeParts = dateTimeString.split("T")
     const dateParts = dateTimeParts[0].split("-")
 
