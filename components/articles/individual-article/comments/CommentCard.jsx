@@ -1,8 +1,8 @@
 import { useContext, useState } from "react"
-import { deleteComment, updateCommentVoteCount } from "../../../../api"
-import { UserContext } from "../../../../contexts/UserContext"
-import formatDateAndTime from "../../../../utils/format-date-and-time"
-import VoteButtons from "../../../vote-buttons/VoteButtons"
+import { deleteComment, updateCommentVoteCount } from "../../../../api.js"
+import { UserContext } from "../../../../contexts/UserContext.jsx"
+import formatDateAndTime from "../../../../utils/format-date-and-time.js"
+import VoteButtons from "../../../vote-buttons/VoteButtons.jsx"
 
 function CommentCard(props){
     const {setComments} = props
@@ -13,27 +13,6 @@ function CommentCard(props){
     const {signedInUser} = useContext(UserContext)
     const [voteError, setVoteError] = useState("")
     const [deleteError, setDeleteError] = useState("")
-
-    function handleVotes(event){
-        event.preventDefault()
-        setVotedForComment((voted) => {
-            return !voted
-        })
-        setCurrentVoteCount((currentVoteCount) => {
-            return votedForComment ? currentVoteCount - 1 : currentVoteCount + 1
-        })
-        updateCommentVoteCount(comment_id).catch((err) => {
-            setVoteError(`Your vote could not be ${votedForComment ? "removed" : "added"}. Please try again later.`)
-            event.target.disabled = true
-            setCurrentVoteCount((currentVoteCount) => {
-                return votedForComment ? currentVoteCount + 1 : currentVoteCount - 1
-            })
-            setTimeout(() => {
-                event.target.disabled = false
-                setVoteError("")
-            }, 5000)
-        })
-    }
 
     function handleDelete(event){
         event.preventDefault()

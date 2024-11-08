@@ -28,7 +28,6 @@ function ArticlePage(props){
     }
     return (<>
     <ArticleContents article={article}/> 
-    <h3>Comments</h3>
     <CommentsSection articleID={article.article_id}/>
     </>)
 }
