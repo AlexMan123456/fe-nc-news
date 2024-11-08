@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { deleteComment, updateCommentVoteCount } from "../../../../api"
 import { UserContext } from "../../../../contexts/UserContext"
 import formatDateAndTime from "../../../../utils/format-date-and-time"
+import VoteButtons from "../../../vote-buttons/VoteButtons"
 
 function CommentCard(props){
     const {setComments} = props
@@ -74,17 +75,13 @@ function CommentCard(props){
                 className="comment-votes-label">
                     Votes: {currentVoteCount}
             </p>
-            <button 
-                key={`comment-${comment_id}-vote-button`} 
-                className="comment-vote-button" 
-                onClick={handleVotes} 
-                disabled={signedInUser ? false : true}
-                aria-label={votedForComment ? `Remove vote from ${author}'s comment` :`Vote for ${author}'s comment`}>
-                    {signedInUser ? (votedForComment ? "Remove vote" : "Vote") : "Sign in to vote"}
-            </button>
+            <div className="comment-vote-buttons">
+                <VoteButtons contents={props.comment} setCurrentVoteCount={setCurrentVoteCount} setError={setVoteError}/>
+            </div>
             {author === signedInUser ? 
                 <button 
                 key={`comment-${comment_id}-delete-button`} 
+                className="delete-comment-button"
                 onClick={handleDelete}
                 aria-label="Delete comment">
                         Delete

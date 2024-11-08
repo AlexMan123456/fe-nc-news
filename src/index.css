@@ -212,3 +212,43 @@ fieldset {
 .article-card-topic-link:hover {
     color: blueviolet
 }
+
+.comment-vote-buttons {
+    margin-left: 3vw;
+    margin-top: 1.7vh;
+}
+
+.delete-comment-button {
+    background-color:red;
+    color: white;
+    border: none;
+}
+
+.delete-comment-button:hover {
+    background-color:lightcoral;
+    color: white;
+    border: none;
+}
+
+.upvote-button {
+    background-color: lightblue
+}
+
+.downvote-button {
+    background-color: lightblue
+}
+
+.upvote-button-voted {
+    background-color: lightgreen
+}
+.upvote-button-voted:hover {
+    background-color: rgb(209, 244, 209)
+}
+
+.downvote-button-voted {
+    background-color: lightcoral
+}
+
+.downvote-button-voted:hover {
+    background-color: rgb(243, 187, 187)
+}

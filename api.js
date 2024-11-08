@@ -21,14 +21,14 @@ function getCommentsByArticleId(articleID, queries){
     })
 }
 
-function updateCommentVoteCount(commentID){
-    return api.patch(`/api/comments/${commentID}`, {inc_votes: 1}).then((data) => {
+function updateCommentVoteCount(commentID, increment){
+    return api.patch(`/api/comments/${commentID}`, {inc_votes: increment}).then((data) => {
         return data.data.comment
     })
 }
 
 function updateArticleVoteCount(articleID, increment){
-    return api.patch(`/api/articles/${articleID}`, {inc_votes: increment ? 1 : -1}).then((data) => {
+    return api.patch(`/api/articles/${articleID}`, {inc_votes: increment}).then((data) => {
         return data.data.updatedArticle
     })
 }
