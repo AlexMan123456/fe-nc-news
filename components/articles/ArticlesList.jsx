@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import { getArticles } from "../../api.js"
 import ArticleCard from "./ArticleCard.jsx"
 import PageIndicators from "../pagination/PageIndicators.jsx"
-import { useSearchParams } from "react-router-dom"
+import { Link, useLocation, useSearchParams } from "react-router-dom"
 import getSearchParams from "../../utils/get-search-parameters.js"
+import setQuery from "../../utils/set-query.js"
 
 function ArticlesList(props){
     const [articles, setArticles] = useState([])
@@ -11,6 +12,7 @@ function ArticlesList(props){
     const [error, setError] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const {topic, sort_by, order, limit, p} = getSearchParams(searchParams)
+    const location = useLocation()
     useEffect(() => {
         setIsLoading(true)
         getArticles({topic, sort_by, order, limit, p}).then((articles) => {
@@ -29,12 +31,18 @@ function ArticlesList(props){
         return <p>{error}</p> 
     }
     return (<>
-        <div id="articles-list">
-            {articles.map((article) => {
-                return <ArticleCard key={`article-${article.article_id}`} article={article}/>
-            })}
-        </div>
-        <PageIndicators/>
+        {articles.length === 0 ? 
+            <section>
+                <h2>There are no articles on this page!</h2>
+                <Link to={`${location.pathname}${setQuery(location.search, "p", 1)}`}>Return to page 1</Link>
+            </section>
+            :
+            <div id="articles-list">
+                {articles.map((article) => {
+                    return <ArticleCard key={`article-${article.article_id}`} article={article}/>
+                })}
+                <PageIndicators/>
+            </div>}
     </>)
 }
 
