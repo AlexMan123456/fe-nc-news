@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import formatDateAndTime from "../../utils/format-date-and-time"
 
 function ArticleCard(props){
     const {article_id, title, author, article_img_url: image, created_at, votes, comment_count, topic} = props.article
+    const [searchParams, setSearchParams] = useSearchParams()
+    const topicQuery = searchParams.get("topic")
     const {date, time} = formatDateAndTime(created_at)
     return (<div key={`article-${article_id}-card`} className="article-card">
         <img 
@@ -23,11 +25,15 @@ function ArticleCard(props){
             key={`article-${article_id}-topic-label`}>
                 Topic:
         </p>
+        {topicQuery ? 
+        <p key={`article-${article_id}-topic`}>{topic}</p>
+        :
         <Link
             to={`?topic=${topic}`} 
-            key={`article-${article_id}-topic`} className="article-card-topic-link">
+            key={`article-${article_id}-topic-link`}
+            className="article-card-topic-link">
                 {topic}
-        </Link>
+        </Link>}
         <br></br>
         <p 
             key={`article-${article_id}-author`}>
