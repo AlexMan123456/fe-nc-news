@@ -9,7 +9,6 @@ function CommentCard(props){
     const {comment_id, author, body, created_at, votes} = props.comment
     const {date, time} = formatDateAndTime(created_at)
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
-    const [votedForComment, setVotedForComment] = useState(false)
     const {signedInUser} = useContext(UserContext)
     const [voteError, setVoteError] = useState("")
     const [deleteError, setDeleteError] = useState("")
@@ -43,11 +42,9 @@ function CommentCard(props){
             className="comment-author-label-and-created-at">
                     Comment by: <strong>{author}</strong> || <em>{date}</em> at <em>{time}</em>
         </legend>
-        <p
-            key={`comment-${comment_id}-body`} 
-            className="comment-body-label">
-                {body}
-        </p>
+        {body.split("\n").map((paragraph, index) => {
+            return <p key={`comment-${comment_id}-body-paragraph-${index}`}>{paragraph}</p>
+        })}
         <div className="comment-buttons-and-vote-count">
             <p 
                 key={`comment-${comment_id}-votes`} 
