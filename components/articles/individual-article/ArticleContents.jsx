@@ -5,10 +5,9 @@ import formatDateAndTime from "../../../utils/format-date-and-time.js"
 import VoteButtons from "../../vote-buttons/VoteButtons.jsx"
 
 function ArticleContents(props){
-    const {title, author, article_img_url: image, body, created_at, votes} = props.article
+    const {title, author, article_img_url: image, body, created_at} = props.article
+    const {currentVoteCount} = props
     const {date, time} = formatDateAndTime(created_at)
-    const [currentVoteCount, setCurrentVoteCount] = useState(votes)
-    const [error, setError] = useState(false)
     return (<>
         <article>
             <div id="article-details">
@@ -25,8 +24,6 @@ function ArticleContents(props){
             <p id="individual-article-votes" aria-label={`Votes: ${currentVoteCount}.`}>Votes: {currentVoteCount}</p>
             <p id="individual-article-created-at">Created on <em>{date}</em> at <em>{time}</em></p>
         </div>
-        <VoteButtons contents={props.article} setCurrentVoteCount={setCurrentVoteCount} setError={setError}/>
-        <p>{error ? error : null}</p>
     </>)
 }
 

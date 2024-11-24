@@ -3,8 +3,10 @@ import OrderRadioGroup from "./OrderRadioGroup.jsx"
 import ArticlesList from "./ArticlesList.jsx"
 import ArticlesQueryLabels from "./ArticlesQueryLabels.jsx"
 import LimitSetter from "../pagination/LimitSetter.jsx"
+import { Link } from "react-router-dom"
 
 function ArticlesPage(){
+
     return (<>
         <SortByRadioGroup/>
         <br></br>
@@ -12,6 +14,7 @@ function ArticlesPage(){
         <br></br>
         <ArticlesQueryLabels/>
         <LimitSetter/>
+        <Link to="/articles/create">Create article</Link>
         <ArticlesList/>
     </>)
 }
