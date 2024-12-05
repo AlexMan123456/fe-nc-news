@@ -21,6 +21,12 @@ function getCommentsByArticleId(articleID, queries){
     })
 }
 
+function postArticle(article){
+    return api.post("/api/articles", article).then((data) => {
+        return data.data.postedArticle
+    })
+}
+
 function updateCommentVoteCount(commentID, increment){
     return api.patch(`/api/comments/${commentID}`, {inc_votes: increment}).then((data) => {
         return data.data.comment
@@ -55,4 +61,4 @@ function getAllTopics(){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics }
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, postArticle }
