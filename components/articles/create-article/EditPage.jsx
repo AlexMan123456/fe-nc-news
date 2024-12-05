@@ -2,10 +2,8 @@ import { useContext, useState } from "react"
 import { UserContext } from "../../../contexts/UserContext.jsx"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 
-function EditPage(){
-    const [title, setTitle] = useState("")
-    const [body, setBody] = useState("")
-    const [image, setImage] = useState("")
+function EditPage(props){
+    const {title, setTitle, body, setBody, image, setImage, setIsPreviewPage} = props
     const [searchParams, setSearchParams] = useSearchParams()
     const {signedInUser} = useContext(UserContext)
     const location = useLocation()
@@ -13,12 +11,13 @@ function EditPage(){
 
     function handleSubmit(event){
         event.preventDefault()
-        searchParams.set("title", title)
+        /*searchParams.set("title", title)
         searchParams.set("author", signedInUser)
         searchParams.set("body", body)
         searchParams.set("created_at", new Date().toISOString())
         
-        navigate(`${location.pathname}/preview?${searchParams.toString()}`)
+        navigate(`${location.pathname}/preview?${searchParams.toString()}`)*/
+        setIsPreviewPage(true)
     }
 
     return (<form onSubmit={handleSubmit}>

@@ -27,7 +27,7 @@ function App() {
       <Route path="/users" element={<SignInPage/>}/>
       <Route path="/articles" element={<ArticlesPage/>}/>
       <Route path="/articles/create" element={<ArticleCreator/>}/>
-      <Route path="/articles/create/preview" element={<PreviewPage/>}/>
+      //<Route path="/articles/create/preview" element={<PreviewPage/>}/>
       <Route path="/articles/:article_id" element={<ArticlePage/>}/>
       <Route path="/topics" element={<TopicsList/>}></Route>
       <Route path="/*" element={<NotFoundPage/>}/>
