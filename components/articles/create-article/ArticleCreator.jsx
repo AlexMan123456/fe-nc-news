@@ -5,6 +5,7 @@ import PreviewPage from "./PreviewPage.jsx"
 function ArticleCreator(){
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
+    const [topic, setTopic] = useState("")
     const [image, setImage] = useState("")
     const [isPreviewPage, setIsPreviewPage] = useState(false)
 
@@ -14,6 +15,8 @@ function ArticleCreator(){
             setTitle={setTitle}
             body={body}
             setBody={setBody}
+            topic={topic}
+            setTopic={setTopic}
             image={image}
             setImage={setImage}
             setIsPreviewPage={setIsPreviewPage}
@@ -22,6 +25,7 @@ function ArticleCreator(){
     return (<PreviewPage
         title={title}
         body={body}
+        topic={topic}
         image={image}
         setIsPreviewPage={setIsPreviewPage}
         />)

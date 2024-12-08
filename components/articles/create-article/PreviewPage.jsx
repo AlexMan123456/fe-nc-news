@@ -5,9 +5,8 @@ import { useContext, useState } from "react"
 import { postArticle } from "../../../api.js"
 
 function PreviewPage(props){
-    const {title, body, image, setIsPreviewPage} = props
+    const {title, body, image, topic, setIsPreviewPage} = props
     const {signedInUser} = useContext(UserContext)
-    const topic = "coding"
     const author = signedInUser
     const created_at = new Date().toISOString()
     const article = {author: signedInUser, title: title, body: body, topic: topic, created_at, article_img_url: image}

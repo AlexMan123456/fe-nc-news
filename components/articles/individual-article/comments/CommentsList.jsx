@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react"
-import { getCommentsByArticleId } from "../../../../api.js"
 import CommentCard from "./CommentCard.jsx"
 import PageIndicators from "../../../pagination/PageIndicators.jsx"
-import { Link, useLocation, useSearchParams } from "react-router-dom"
-import setQuery from "../../../../utils/set-query.js"
 
 function CommentsList(props){
     const {comments, setComments, isLoading, error} = props

@@ -13,7 +13,7 @@ function CommentsSection(props){
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
-    const p = searchParams.get("p")
+    const p = searchParams.get("p") ?? 1
     useEffect(() => {
         setIsLoading(true)
         getCommentsByArticleId(props.articleID, {p}).then((comments) => {
@@ -29,13 +29,19 @@ function CommentsSection(props){
         <h3>Comments</h3>
         <div id="comments-area">
             {comments.length === 0 ? 
+            (p === 1 ? 
+            <section>
+                <h4>Be the first to add a comment</h4>
+                {signedInUser ? <CommentAdder articleID={props.articleID} setComments={setComments}/> : <p>Please sign in to post a comment</p>}
+            </section>
+            :
             <section>
                 <h4>There are no comments on this page!</h4>
                 <Link to={`${setQuery(location.search, "p", 1)}`}>Return to page 1</Link>
-            </section>
+            </section>)
             :
             <>
-            {signedInUser ? <CommentAdder articleID={props.articleID} setComments={setComments}/> : <label>Please sign in to post a comment</label>}
+            {signedInUser ? <CommentAdder articleID={props.articleID} setComments={setComments}/> : <p>Please sign in to post a comment</p>}
             <br></br>
             <CommentsList comments={comments} setComments={setComments} isLoading={isLoading} error={error}/>
             </>}
