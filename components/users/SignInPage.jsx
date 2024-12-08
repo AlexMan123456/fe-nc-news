@@ -26,11 +26,11 @@ function SignInPage(){
     }
     return (<>
         <h2>Sign in as:</h2>
-        <div id="user-selection">
+        <section id="user-selection">
             {users.map((user) => {
                 return <SignInCard key={`${user.username}-sign-in-card`} username={user.username} name={user.name} avatar={user.avatar_url}/>
             })}
-        </div>
+        </section>
     </>)
 }
 
