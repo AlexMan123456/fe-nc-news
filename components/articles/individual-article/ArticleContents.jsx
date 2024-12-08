@@ -16,7 +16,9 @@ function ArticleContents(props){
                 <img src={image} alt={`cover image for '${title}' by ${author}`}/>
             </div>
             <section id="article-contents-body">
-                <p>{body}</p>
+                {body.split("\n").map((paragraph, index) => {
+                    return <p key={`article-${props.article.article_id}-paragraph-${index}`}>{paragraph}</p>
+                })}
             </section>
         </article>
         <br></br>
