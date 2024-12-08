@@ -3,7 +3,7 @@ import { UserContext } from "../../contexts/UserContext"
 
 function SignInCard(props){
     const {username, name, avatar} = props
-    const {signedInUser, setSignedInUser} = useContext(UserContext)
+    const {setSignedInUser} = useContext(UserContext)
     const [isSignInButtonClicked, setIsSignInButtonClicked] = useState(false)
     return <div key={`${username}-card`} className="sign-in-card">
         <img 
@@ -28,6 +28,7 @@ function SignInCard(props){
         event.preventDefault()
         setIsSignInButtonClicked(true)
         setSignedInUser(username)
+        localStorage.setItem("signedInUser", username)
         setTimeout(() => {
             setIsSignInButtonClicked(false)
         }, 5000)
