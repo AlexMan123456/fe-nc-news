@@ -23,7 +23,6 @@ function PreviewPage(props){
         event.preventDefault()
         setIsPosting(true)
         delete article.created_at
-        delete article.article_img_url
         postArticle(article)
         .then((article) => {
             setIsPosting(false)
