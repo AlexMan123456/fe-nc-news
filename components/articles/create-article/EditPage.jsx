@@ -37,6 +37,9 @@ function EditPage(props){
         }
     }
 
+    function handleImage(event){
+        setImage(URL.createObjectURL(event.target.files[0]))
+    }
 
     if(isLoading){
         return <p>Now loading...</p>
@@ -56,6 +59,8 @@ function EditPage(props){
                     onChange={(event) => {setTitle(event.target.value)}}
                 ></input>
         </div>
+        <input type="file" onChange={handleImage}/>
+        {image ? <img src={image} alt="Your chosen image"/> : null}
         <div id="article-body-setter">
             <label htmlFor="article-body-textbox">Body:</label>
                 <textarea 
