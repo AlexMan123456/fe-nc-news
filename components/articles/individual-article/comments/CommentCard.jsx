@@ -64,8 +64,8 @@ function CommentCard(props){
                 </button> 
             : null}
         </div>
-        <p>{voteError ? voteError : null}</p>
-        <p>{deleteError ? deleteError : null}</p>
+        <p>{voteError}</p>
+        <p>{deleteError}</p>
     </fieldset>)
     
 }

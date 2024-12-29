@@ -39,7 +39,7 @@ function ArticlesList(props){
             :
             <div id="articles-list">
                 {articles.map((article) => {
-                    return <ArticleCard key={`article-${article.article_id}`} article={article}/>
+                    return <ArticleCard key={`article-${article.article_id}`} article={article} setArticles={setArticles}/>
                 })}
                 <PageIndicators/>
             </div>}

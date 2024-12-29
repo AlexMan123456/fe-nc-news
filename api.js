@@ -61,4 +61,8 @@ function getAllTopics(){
     })
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, postArticle }
+function deleteArticle(articleID){
+    return api.delete(`/api/articles/${articleID}`)
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateCommentVoteCount, getAllUsers, postComment, updateArticleVoteCount, deleteComment, getAllTopics, postArticle, deleteArticle }
