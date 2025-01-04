@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import { Link } from "react-router-dom"
 
 function SignInCard(props){
     const {username, name, avatar} = props
@@ -22,6 +23,7 @@ function SignInCard(props){
             aria-label={`Sign in as ${username}`}>
                 Sign in
         </button>
+        <Link to={`/users/${username}`}>View profile</Link>
         <p>{isSignInButtonClicked ? "Signed in successfully" : null}</p>
     </div>
     function handleSignIn(event){

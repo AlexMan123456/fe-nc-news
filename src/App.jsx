@@ -10,6 +10,7 @@ import TopicsList from "../components/topics/TopicsList.jsx"
 import NotFoundPage from "../components/error/NotFoundPage.jsx"
 import ArticleCreator from "../components/articles/create-article/ArticleCreator.jsx"
 import PreviewPage from "../components/articles/create-article/PreviewPage.jsx"
+import ProfilePage from "../components/users/ProfilePage.jsx"
 
 function App() {
   const {signedInUser} = useContext(UserContext)
@@ -27,7 +28,8 @@ function App() {
       <Route path="/users" element={<SignInPage/>}/>
       <Route path="/articles" element={<ArticlesPage/>}/>
       <Route path="/articles/create" element={<ArticleCreator/>}/>
-      //<Route path="/articles/create/preview" element={<PreviewPage/>}/>
+      <Route path="/articles/create/preview" element={<PreviewPage/>}/>
+      <Route path="/users/:username" element={<ProfilePage/>}/>
       <Route path="/articles/:article_id" element={<ArticlePage/>}/>
       <Route path="/topics" element={<TopicsList/>}></Route>
       <Route path="/*" element={<NotFoundPage/>}/>
