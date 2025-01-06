@@ -3,7 +3,7 @@ import { getArticleById } from "../../../api"
 import { useEffect, useState } from "react"
 import ArticleContents from "./ArticleContents"
 import CommentsSection from "./comments/CommentsSection"
-import VoteButtons from "../../vote-buttons/VoteButtons"
+import VoteButtons from "../../buttons/VoteButtons"
 
 function ArticlePage(props){
     const [article, setArticle] = useState({})

@@ -245,13 +245,13 @@ fieldset {
     margin-top: 1.7vh;
 }
 
-.delete-comment-button {
+.delete-button {
     background-color:red;
     color: white;
     border: none;
 }
 
-.delete-comment-button:hover {
+.delete-button:hover {
     background-color:lightcoral;
     color: white;
     border: none;

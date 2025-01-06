@@ -2,7 +2,8 @@ import { useContext, useState } from "react"
 import { deleteComment, updateCommentVoteCount } from "../../../../api.js"
 import { UserContext } from "../../../../contexts/UserContext.jsx"
 import formatDateAndTime from "../../../../utils/format-date-and-time.js"
-import VoteButtons from "../../../vote-buttons/VoteButtons.jsx"
+import VoteButtons from "../../../buttons/VoteButtons.jsx"
+import DeleteButton from "../../../buttons/DeleteButton.jsx"
 
 function CommentCard(props){
     const {setComments} = props
@@ -11,30 +12,6 @@ function CommentCard(props){
     const [currentVoteCount, setCurrentVoteCount] = useState(votes)
     const {signedInUser} = useContext(UserContext)
     const [voteError, setVoteError] = useState("")
-    const [deleteError, setDeleteError] = useState("")
-
-    function handleDelete(event){
-        event.preventDefault()
-        deleteComment(comment_id).then(() => {
-            setComments((currentComments) => {
-                const existingComments = [...currentComments]
-                for(const index in existingComments){
-                    if(currentComments[index].comment_id === comment_id){
-                        existingComments.splice(index, 1)
-                        break
-                    }
-                }
-                return existingComments
-            })
-        }).catch((err) => {
-            setDeleteError("Your comment could not be deleted. Please try again later.")
-            event.target.disabled = true
-            setTimeout(() => {
-                event.target.disabled = false
-                setDeleteError("")
-            }, 5000)
-        })
-    }
 
     return (<fieldset className="comment">
         <legend 
@@ -55,17 +32,13 @@ function CommentCard(props){
                 <VoteButtons contents={props.comment} setCurrentVoteCount={setCurrentVoteCount} setError={setVoteError}/>
             </div>
             {author === signedInUser ? 
-                <button 
-                key={`comment-${comment_id}-delete-button`} 
-                className="delete-comment-button"
-                onClick={handleDelete}
-                aria-label="Delete comment">
-                        Delete
-                </button> 
+                <DeleteButton
+                    key={`comment-${comment_id}-delete-button`}
+                    contents={props.comment}
+                    setContents={setComments}/> 
             : null}
         </div>
         <p>{voteError}</p>
-        <p>{deleteError}</p>
     </fieldset>)
     
 }
