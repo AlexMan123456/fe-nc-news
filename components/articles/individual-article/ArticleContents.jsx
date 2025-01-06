@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { updateArticleVoteCount } from "../../../api.js"
 import { UserContext } from "../../../contexts/UserContext.jsx"
 import formatDateAndTime from "../../../utils/format-date-and-time.js"
-import VoteButtons from "../../vote-buttons/VoteButtons.jsx"
+import VoteButtons from "../../buttons/VoteButtons.jsx"
 
 function ArticleContents(props){
     const {title, author, article_img_url: image, body, created_at} = props.article
